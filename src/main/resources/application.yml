@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: rag-trial
+  ai:
+    openai:
+#      embedding:
+#        options:
+#          model: text-embedding-3-large
+      api-key: "<OPENAI_API>"
+      chat:
+        options:
+          temperature: 1
+          model: gpt-5-nano-2025-08-07
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+python:
+  filter-service:
+    base-url: http://localhost:8000
+
+
+
+
