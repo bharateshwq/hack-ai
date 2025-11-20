@@ -61,8 +61,8 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public Project getById(@PathVariable Long id) {
-        return service.getById(id);
+    public ProjectResponse getById(@PathVariable Long id) {
+        return toDto(service.getById(id));
     }
 
     @PostMapping
