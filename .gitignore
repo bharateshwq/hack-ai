@@ -31,3 +31,30 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### Python Cache & Virtual Environments ###
+# Bytecode cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# Pip cache
+pip-wheel-metadata/
+pip-cache/
+
+# PyCharm / JetBrains
+.idea/
+
+# Misc Python
+*.egg-info/
+*.egg
+.eggs/

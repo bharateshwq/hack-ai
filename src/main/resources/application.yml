@@ -1,12 +1,22 @@
 spring:
   application:
     name: rag-trial
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/hack-ai
+    username: admin1
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create
   ai:
     openai:
 #      embedding:
 #        options:
 #          model: text-embedding-3-large
-      api-key: "<OPENAI_API>"
+      api-key: ""
       chat:
         options:
           temperature: 1

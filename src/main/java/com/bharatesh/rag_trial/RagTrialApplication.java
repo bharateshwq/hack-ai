@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RagTrialApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RagTrialApplication.class, args);
-	}
+    public static void main(String[] args) {
+
+        SpringApplication.run(RagTrialApplication.class, args);
+    }
 
 }

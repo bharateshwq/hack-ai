@@ -9,7 +9,7 @@ import java.util.*;
 
 public class DirectoryCodeBaseReader {
     private final Path root;
-    private final List<String> allowedExtensions = List.of(".js", ".jsx", ".ts", ".tsx", ".json", ".md", ".html", ".css");
+    private final List<String> allowedExtensions = List.of(".js", ".jsx", ".ts", ".tsx", ".json", ".md", ".html", ".css","java");
 
 
     public DirectoryCodeBaseReader(Path root) {
