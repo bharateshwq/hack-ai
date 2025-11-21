@@ -39,6 +39,7 @@ public class ChatController {
         private final ChatClient chatClient;
 
         private final RagConfigStore configStore;
+        private final ChatClient chatWithoutContext;
         private final WebClient webClient;
         private final PythonFilterProperties pythonFilterProperties;
         @Autowired
@@ -52,7 +53,8 @@ public class ChatController {
         private final List<Message> converstions;
 
         public ChatController(ChatClient.Builder builder, PgVectorStore vectorStore, RagConfigStore configStore,
-                        WebClient webClient, PythonFilterProperties pythonFilterProperties, ChatService chatService) {
+                        WebClient webClient, PythonFilterProperties pythonFilterProperties, ChatService chatService,ChatClient.Builder chatBuilder) {
+                                this.chatWithoutContext = chatBuilder.build();
                 this.configStore = configStore;
                 this.webClient = webClient;
                 this.pythonFilterProperties = pythonFilterProperties;
@@ -111,7 +113,7 @@ public class ChatController {
         @GetMapping("/chat")
         public Map<String, Object> chat(@RequestParam(required = true) String message) {
 
-                String response = chatClient.prompt().user(message).call().content();
+                String response = chatWithoutContext.prompt().user(message).call().content();
                 return Map.of("ai_response", response);
         }
 
@@ -135,7 +137,7 @@ public class ChatController {
                 // // List.of("SECRET", "PRIVATE"),
                 // regex);
                 log.info("Sending request to Python filter service: " + filteredResponse);
-                String response = chatClient.prompt().user(filteredResponse.getAnonymizedText()).call().content();
+                String response = filteredResponse.getAnonymizedText();
                 return new GeneralChatResponse(
                                 response,
                                 hasContext,

@@ -5,7 +5,6 @@ from pydantic import BaseModel, Field
 from presidio_analyzer import AnalyzerEngine, RecognizerResult, Pattern
 from presidio_analyzer.pattern_recognizer import PatternRecognizer
 from presidio_anonymizer import AnonymizerEngine
-from fastapi.middleware.cors import CORSMiddleware
 from presidio_analyzer.predefined_recognizers import (
     AbaRoutingRecognizer,
     CreditCardRecognizer,
@@ -56,13 +55,8 @@ from broker import broker
 # Set up FastAPI
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],          # Allow all origins
-    allow_credentials=True,
-    allow_methods=["*"],          # Allow all HTTP methods
-    allow_headers=["*"],          # Allow all headers
-)
+
+
 
 # Initialize Presidio analyzer and anonymizer
 anonymizer_engine = AnonymizerEngine()
@@ -84,7 +78,14 @@ def build_analyzer_results_json(results: list[RecognizerResult], text: str, corr
             "score": result.score,
             "text": text[result.start:result.end],
             "correlation_id": correlation_id,
-            "risk_level": "HIGH" if result.score > 0.5 else "LOW",
+            "risk_level": (
+                "CRITICAL" if result.score > 0.8 else
+                "HIGH" if result.score > 0.4 else
+                "MEDIUM" if result.score > 0.0 else
+                "LOW"
+            ),
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S,%f")[:-3],
+            
         }
         
         if result.analysis_explanation is not None:
