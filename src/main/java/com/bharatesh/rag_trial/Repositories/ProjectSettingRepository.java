@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectSettingRepository extends JpaRepository<ProjectSetting, Long> {
-    List<ProjectSetting> findByProject_Id(Long projectId);    
-
+    List<ProjectSetting> findByProject_Id(Long projectId);
+    void deleteByGuardrail_IdAndProject_Id(Long guardrailId, Long projectId);
 }
 

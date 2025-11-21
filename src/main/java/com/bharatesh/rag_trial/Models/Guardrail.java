@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.annotation.Transient;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -33,6 +35,8 @@ public class Guardrail {
 
     @OneToMany(mappedBy = "guardrail", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProjectSetting> projectSettings = new ArrayList<>();
+     @Transient
+    private Boolean attached = false;
 
 
 // getters and setters
