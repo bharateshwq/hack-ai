@@ -1,0 +1,102 @@
+{
+  "name": "ai-assist",
+  "displayName": "AI-Assist",
+  "description": "ai assist",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.106.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact",
+    "onView:aiSidebar"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-assist.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "ai-assist.write_docs",
+        "title": "Write Docs"
+      },
+      {
+        "command": "aiSidebar.open",
+        "title": "Open AI Sidebar"
+      },
+      {
+        "command": "aiSidebar.sendSelection",
+        "title": "Send Selection to AI"
+      },
+      {
+        "command": "aiSidebar.clearSession",
+        "title": "Clear AI Session"
+      },
+      {
+        "command": "aiSidebar.insertResponse",
+        "title": "Insert AI Response"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "ai-assist.write_docs",
+        "key": "ctrl+.",
+        "mac": "cmd+.",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ai-assist.write_docs",
+        "key": "ctrl+shift+.",
+        "mac": "cmd+shift+.",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "aiSidebar.sendSelection",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ai-sidebar-view",
+          "title": "AI Assist",
+          "icon": "media/icon1.svg"
+        }
+      ]
+    },
+    "views": {
+      "ai-sidebar-view": [
+        {
+          "type": "webview",
+          "id": "aiSidebar",
+          "name": "AI Chat"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.106.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.1"
+  },
+  "dependencies": {
+    "axios": "^1.13.2"
+  }
+}

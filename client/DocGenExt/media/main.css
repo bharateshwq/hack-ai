@@ -1,0 +1,4 @@
+/* Main CSS handled in inline style for now, but file exists for future expansion */
+.message {
+    word-wrap: break-word;
+}
